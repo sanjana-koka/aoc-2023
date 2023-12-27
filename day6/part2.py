@@ -20,20 +20,13 @@ def process_file(file_path):
 
 	time = int(time_long)
 	dist = int(dist_long)
-	winners = 0
-	for i in range(time):
-		curr = i * (time - i)
-		if curr > dist:
-			winners += 1
-	print(winners)
-	#total *= winners
+	
 	#x = time +- sqrt(time^2 - 4dist) / 2
-	max = 2 * math.sqrt(time**2 - 4*dist)
-	min = 2 * math.sqrt(time**2 - 4*dist)
-	diff = math.floor(max) - math.floor(min) + 1
-	#print(diff)
-	#print(f"time: {time}, dist: {dist}")
-	#print(total)
+	max = (time + math.sqrt((time**2) - (4*dist))) / 2
+	min = (time - math.sqrt((time**2) - (4*dist))) / 2
+	diff = math.floor(max) - math.ceil(min) + 1
+	
+	print(diff)
 
 if __name__ == "__main__":
 	if len(sys.argv) != 2:

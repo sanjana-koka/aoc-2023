@@ -11,21 +11,15 @@ def process_file(file_path):
 	
 	total = 1
 	for i in range(len(times)):
-		time = int(times[i])
-		dist = int(dists[i])
-		winners = 0
-		for i in range(time):
-			curr = i * (time - i)
-			if curr > dist:
-				winners += 1
-		print(winners)
-		total *= winners
+		time = float(times[i])
+		dist = float(dists[i])
+		
 		# x = time +- sqrt(time^2 - 4dist) / 2
-		max = 2 * math.sqrt(time**2 - 4*dist)
-		min = 2 * math.sqrt(time**2 - 4*dist)
-		diff = math.floor(max) - math.floor(min) + 1
-		#print(diff)
-		#print(f"time: {time}, dist: {dist}")
+		max = (time + math.sqrt((time**2) - (4.0*dist))) / 2.0
+		min = (time - math.sqrt((time**2) - (4.0*dist))) / 2.0
+		
+		diff = math.ceil(max) - math.floor(min) - 1
+		total *= diff
 	print(total)
 
 if __name__ == "__main__":
